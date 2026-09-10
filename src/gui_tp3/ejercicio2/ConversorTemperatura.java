@@ -3,11 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package gui_tp3.ejercicio2;
-
-/**
- *
- * @author VALE
- */
+import javax.swing.JOptionPane;
 public class ConversorTemperatura extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ConversorTemperatura.class.getName());
@@ -34,10 +30,10 @@ public class ConversorTemperatura extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtTemperatura = new javax.swing.JTextField();
-        rbtnFahrenheit = new javax.swing.JRadioButton();
-        rbtnCelsius = new javax.swing.JRadioButton();
-        rbtnKelvin = new javax.swing.JRadioButton();
-        rbtnRadianes = new javax.swing.JRadioButton();
+        rbtFahrenheit = new javax.swing.JRadioButton();
+        rbtCelsius = new javax.swing.JRadioButton();
+        rbtKelvin = new javax.swing.JRadioButton();
+        rbtRadianes = new javax.swing.JRadioButton();
         btnConvertir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -56,17 +52,17 @@ public class ConversorTemperatura extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel2.setText("Ingrese temperatura en grados:");
 
-        buttonGroup1.add(rbtnFahrenheit);
-        rbtnFahrenheit.setText(" A Fahrenheit  ");
+        buttonGroup1.add(rbtFahrenheit);
+        rbtFahrenheit.setText(" A Fahrenheit  ");
 
-        buttonGroup1.add(rbtnCelsius);
-        rbtnCelsius.setText("A Celsius");
+        buttonGroup1.add(rbtCelsius);
+        rbtCelsius.setText("A Celsius");
 
-        buttonGroup1.add(rbtnKelvin);
-        rbtnKelvin.setText("A Kelvin");
+        buttonGroup1.add(rbtKelvin);
+        rbtKelvin.setText("A Kelvin");
 
-        buttonGroup1.add(rbtnRadianes);
-        rbtnRadianes.setText("A Radianes");
+        buttonGroup1.add(rbtRadianes);
+        rbtRadianes.setText("A Radianes");
 
         btnConvertir.setBackground(new java.awt.Color(238, 238, 238));
         btnConvertir.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -83,13 +79,13 @@ public class ConversorTemperatura extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(rbtnKelvin, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rbtKelvin, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(rbtnRadianes, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(rbtRadianes, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(rbtnFahrenheit, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rbtFahrenheit, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(rbtnCelsius, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(rbtCelsius, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(69, 69, 69))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,12 +114,12 @@ public class ConversorTemperatura extends javax.swing.JFrame {
                 .addComponent(txtTemperatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbtnFahrenheit)
-                    .addComponent(rbtnCelsius))
+                    .addComponent(rbtFahrenheit)
+                    .addComponent(rbtCelsius))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbtnKelvin)
-                    .addComponent(rbtnRadianes))
+                    .addComponent(rbtKelvin)
+                    .addComponent(rbtRadianes))
                 .addGap(18, 18, 18)
                 .addComponent(btnConvertir, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(19, Short.MAX_VALUE))
@@ -161,7 +157,45 @@ public class ConversorTemperatura extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConvertirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertirActionPerformed
-        // TODO add your handling code here:
+        try {
+        double temp = Double.parseDouble(txtTemperatura.getText());
+        String resultado = "";
+
+        if (rbtCelsius.isSelected()) {
+
+            double f = temp * 9 / 5 + 32;
+            
+
+            resultado = temp + " °C = " + temp + " °C\n";
+
+        } else if (rbtFahrenheit.isSelected()) {
+
+             double f = temp * 9 / 5 + 32;
+
+            resultado = temp + " °C = " + f + " °F\n";
+            
+
+        } else if (rbtKelvin.isSelected()) {
+            double k = temp + 273.15;
+            
+
+            resultado = temp + " °C = " + k + " °K\n";
+            
+        } else if (rbtRadianes.isSelected()){
+            double r = temp * Math.PI / 180;
+            resultado = temp + " °C = " + r + " °R\n";
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Seleccione una unidad");
+            return;
+        }
+
+        JOptionPane.showMessageDialog(this, resultado);
+
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this,
+                "Ingrese un número válido");
+    }
     }//GEN-LAST:event_btnConvertirActionPerformed
 
     /**
@@ -196,10 +230,10 @@ public class ConversorTemperatura extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton rbtnCelsius;
-    private javax.swing.JRadioButton rbtnFahrenheit;
-    private javax.swing.JRadioButton rbtnKelvin;
-    private javax.swing.JRadioButton rbtnRadianes;
+    private javax.swing.JRadioButton rbtCelsius;
+    private javax.swing.JRadioButton rbtFahrenheit;
+    private javax.swing.JRadioButton rbtKelvin;
+    private javax.swing.JRadioButton rbtRadianes;
     private javax.swing.JTextField txtTemperatura;
     // End of variables declaration//GEN-END:variables
 }
